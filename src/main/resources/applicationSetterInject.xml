@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="carSpecification" class="org.example.setter.injection.Specification">
+        <property name="make" value="Toyata"/>
+        <property name="model" value="120ed"/>
+
+    </bean>
+        <bean id="myCar" class="org.example.setter.injection.Car">
+            <property name="specification" ref="carSpecification"/>
+        </bean>
+    <bean id="busSpeci" class="org.example.setter.injection.BusSpeci">
+        <property name="make" value="TATA"/>
+        </bean>
+    <bean id="myBus" class="org.example.setter.injection.Bus">
+        <property name="busSpecification" ref="busSpeci"/>
+    </bean>
+</beans>

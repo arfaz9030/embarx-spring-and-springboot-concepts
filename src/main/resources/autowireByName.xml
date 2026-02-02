@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="specification" class="org.example.autowire.byname.Specification">
+        <property name="make" value="Toyata"/>
+        <property name="model" value="120ed"/>
+      </bean>
+   <bean id="myCar" class="org.example.autowire.byname.Car" autowire="byName" />
+    <bean id="busSpeci" class="org.example.autowire.byname.BusSpeci">
+        <property name="make" value="Toyata"/>
+    </bean>
+    <bean id="busSpeci1" class="org.example.autowire.byname.BusSpeci">
+        <property name="make" value="Honda"/>
+    </bean>
+    <bean id="myBus" class="org.example.autowire.byname.Bus" autowire="byName" />
+
+</beans>
