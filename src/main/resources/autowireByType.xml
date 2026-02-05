@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML declaration:
+  Identifies this file as a standard XML configuration file.
+
+  Interview line:
+  "Spring configuration is written using standard XML syntax."
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="specification" class="org.example.autowire.bytype.CarSpecification">
+        <!-- Setter injection: Spring calls setMake("Toyata") -->
+        <property name="make" value="Toyata"/>
+        <!-- Setter injection: Spring calls setModel("120ed") -->
+        <property name="model" value="120ed"/>
+    </bean>
+
+    <!--
+      Bean: myCar
+
+      autowire="byType":
+      - Spring resolves dependencies based on the TYPE of the property
+      - Property name does NOT matter
+      - Exactly ONE bean of the required type must exist
+
+      Interview line:
+      "In autowire byType, Spring injects dependencies by matching the
+       property type, not the property name."
+    -->
+    <bean id="myCar"
+          class="org.example.autowire.bytype.Car"
+          autowire="byType" />
+
+
+    <!--
+      Bean: busSpeci
+
+      This bean is of type BusSpeci.
+      It will be injected into any bean that has:
+          private BusSpeci busSpeci;
+
+      Interview line:
+      "byType autowiring requires exactly one bean of the matching type
+       in the Spring container."
+    -->
+    <bean id="busSpeci" class="org.example.autowire.bytype.BusSpeci">
+        <property name="make" value="Toyata"/>
+    </bean>
+
+
+    <!--
+      Bean: myBus
+
+      autowire="byType":
+      - Spring looks for a SINGLE bean of type BusSpeci
+      - Finds bean id="busSpeci"
+      - Injects it automatically using setter injection
+
+      IMPORTANT:
+      - If ZERO beans of the type exist → dependency remains null
+      - If MORE THAN ONE bean of the same type exist → Spring throws exception
+
+      Interview line:
+      "autowire byType fails when multiple beans of the same type exist
+       because Spring cannot decide which one to inject."
+    -->
+    <bean id="myBus"
+          class="org.example.autowire.bytype.Bus"
+          autowire="byType" />
+</beans>

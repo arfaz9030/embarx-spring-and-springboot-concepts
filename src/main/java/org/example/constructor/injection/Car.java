@@ -1,7 +1,7 @@
 package org.example.constructor.injection;
 
 /*
- * Car is NOT responsible for creating Specification.
+ * Car is NOT responsible for creating CarSpecification.
  * It only declares what it needs.
  *
  * Interview line:
@@ -11,7 +11,7 @@ package org.example.constructor.injection;
 public class Car {
 
     /*
-     * Car has a dependency on Specification.
+     * Car has a dependency on CarSpecification.
      * This represents a HAS-A relationship.
      *
      * Interview line:
@@ -21,7 +21,7 @@ public class Car {
 
     /*
      * Constructor Injection:
-     * Spring will call this constructor and provide Specification.
+     * Spring will call this constructor and provide CarSpecification.
      *
      * Why constructor?
      * - Ensures Car is always created in a valid state
@@ -37,7 +37,7 @@ public class Car {
 
     /*
      * Business method uses the injected dependency.
-     * Car does not know HOW Specification was created.
+     * Car does not know HOW CarSpecification was created.
      *
      * Interview line:
      * "The class only uses the dependency, creation is handled by Spring."

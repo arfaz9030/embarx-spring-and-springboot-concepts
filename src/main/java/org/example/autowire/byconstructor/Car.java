@@ -1,4 +1,4 @@
-package org.example.setter.injection;
+package org.example.autowire.byconstructor;
 
 /*
  * Car is NOT responsible for creating CarSpecification.
@@ -17,17 +17,15 @@ public class Car {
      * Interview line:
      * "Dependencies are expressed as fields, not created internally."
      */
-    private Specification specification;
-    /*
-     * This setter is MANDATORY for XML property injection.
-     *
-     * XML <property name="specification"/>
-     * → Spring looks for setSpecification(...)
-     */
+    private CarSpecification specification;
 
-    public void setSpecification(Specification specification) {
+    public Car(CarSpecification specification) {
         this.specification = specification;
     }
+//no need to write setter for constructor invoking
+//    public void setSpecification(CarSpecification specification) {
+//        this.specification = specification;
+//    }
 
     /*
      * Business method uses the injected dependency.

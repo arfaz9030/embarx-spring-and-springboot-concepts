@@ -1,4 +1,4 @@
-package org.example.autowire.byname;
+package org.example.autowire.byconstructor;
 
 /*
  * CarSpecification is a simple data holder.
@@ -7,7 +7,7 @@ package org.example.autowire.byname;
  * Interview line:
  * "Spring beans should be simple POJOs without framework dependency."
  */
-public class Specification {
+public class CarSpecification {
 
     /*
      * These are plain fields.

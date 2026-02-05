@@ -1,4 +1,5 @@
-package org.example.autowire.byname;
+package org.example.autowire.byconstructor;
+
 /*
  * Bus is NOT responsible for creating CarSpecification.
  * It only declares what it needs.
@@ -16,9 +17,13 @@ public class Bus {
      * "Dependencies are expressed as fields, not created internally."
      */
     private BusSpeci busSpeci1;
-public void setBusSpeci(BusSpeci busSpeci){
-    this.busSpeci1=busSpeci;
-}
+    public Bus(BusSpeci busSpeci1) {
+        this.busSpeci1 = busSpeci1;
+    }
+    //No need setter funcions to as constructor assiging values
+//public void setBusSpeci(BusSpeci busSpeci){
+//    this.busSpeci1=busSpeci;
+//}
     public void getSpecification() {
         System.out.println(busSpeci1.toString());
     }

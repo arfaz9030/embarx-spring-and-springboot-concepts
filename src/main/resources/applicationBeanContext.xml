@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML declaration:
+  Declares this file as a standard XML document using UTF-8 encoding.
+
+  Interview line:
+  "Spring configuration files are standard XML documents."
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="myBean" class="org.example.MyBean">
-    <property name="beanName" value="I am a first bean"/>
-</bean>
+    <!--
+      <beans> is the ROOT element of Spring XML configuration.
+
+      Interview line:
+      "The beans tag represents the Spring IoC container
+       that manages the lifecycle of all beans."
+    -->
+
+    <!--
+      Bean Definition:
+
+      id="myBean"
+      - Unique identifier inside the Spring container
+      - Used to retrieve the bean from ApplicationContext
+
+      class="org.example.MyBean"
+      - Fully Qualified Class Name (FQCN)
+      - Spring uses reflection to create the object
+
+      Interview line:
+      "Spring creates objects using reflection instead of
+       developers using the new keyword."
+    -->
+    <bean id="myBean" class="org.example.MyBean">
+
+        <!--
+          Property Injection (Setter Injection):
+
+          name="beanName"
+          - Must match a field name in MyBean
+          - Spring looks for a public method: setBeanName(String)
+
+          value="I am a first bean"
+          - Literal value injected into the bean
+
+          Internal Spring flow:
+          1. new MyBean()        → default constructor
+          2. setBeanName(value) → setter injection
+
+          Interview line:
+          "Setter injection requires a default constructor
+           and a public setter method."
+        -->
+        <property name="beanName" value="I am a first bean"/>
+
+    </bean>
 
 </beans>

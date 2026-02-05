@@ -1,21 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML declaration:
+  Identifies this file as a standard XML configuration file.
+
+  Interview line:
+  "Spring configuration is written using standard XML syntax."
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--
+      Bean: specification
+
+      This bean represents car specifications.
+
+      IMPORTANT for autowire="byName":
+      - The bean id MUST match the property name in the dependent class.
+      - Here, Car must have a property named 'specification'.
+
+      Interview line:
+      "In autowire byName, Spring injects dependencies
+       by matching bean id with property name."
+    -->
     <bean id="specification" class="org.example.autowire.byname.Specification">
+        <!-- Setter injection: Spring calls setMake("Toyata") -->
         <property name="make" value="Toyata"/>
+        <!-- Setter injection: Spring calls setModel("120ed") -->
         <property name="model" value="120ed"/>
-      </bean>
-   <bean id="myCar" class="org.example.autowire.byname.Car" autowire="byName" />
+    </bean>
+
+    <!--
+      Bean: myCar
+
+      autowire="byName":
+      - Spring looks for a property inside Car named 'specification'
+      - Finds a bean with id="specification"
+      - Injects it automatically via setter
+
+      Interview line:
+      "byName autowiring uses setter injection
+       and resolves dependencies using property names."
+    -->
+    <bean id="myCar"
+          class="org.example.autowire.byname.Car"
+          autowire="byName" />
+
+    <!--
+      Bean: busSpeci
+
+      This is one implementation/configuration for Bus specification.
+
+      Note:
+      - Multiple beans of the same type exist (busSpeci, busSpeci1)
+      - byName avoids ambiguity by using bean id, not type
+
+      Interview line:
+      "byName autowiring works well when multiple beans
+       of the same type are present."
+    -->
     <bean id="busSpeci" class="org.example.autowire.byname.BusSpeci">
         <property name="make" value="Toyata"/>
     </bean>
+
+    <!--
+      Bean: busSpeci1
+
+      Another bean of the SAME class but with different configuration.
+
+      Interview line:
+      "Spring allows multiple beans of the same class,
+       each identified uniquely by bean id."
+    -->
     <bean id="busSpeci1" class="org.example.autowire.byname.BusSpeci">
         <property name="make" value="Honda"/>
     </bean>
-    <bean id="myBus" class="org.example.autowire.byname.Bus" autowire="byName" />
+
+    <!--
+      Bean: myBus
+
+      autowire="byName":
+      - Bus must have a property whose name matches a bean id
+      - Example:
+            private BusSpeci busSpeci;
+      - Spring injects bean with id="busSpeci"
+
+      IMPORTANT:
+      - If property name does NOT match any bean id,
+        Spring will NOT inject and value remains null
+
+      Interview line:
+      "autowire byName silently fails if no matching bean id is found."
+    -->
+    <bean id="myBus"
+          class="org.example.autowire.byname.Bus"
+          autowire="byName" />
 
 </beans>

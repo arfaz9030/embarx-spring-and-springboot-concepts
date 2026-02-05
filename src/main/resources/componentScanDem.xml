@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+      context:component-scan tells Spring where to scan for @Component classes.
+      base-package = "org.example.componentscan"
+      → Spring will look in this package and all its sub-packages
+        for classes annotated with @Component, @Service, @Repository, @Controller, etc.
+   1.Spring IoC creates instances (beans)
+  2. Puts them into the ApplicationContext
+  3. They become injectable via @Autowired, etc.
+      Interview line:
+      "Component scan is used to instruct Spring where to scan
+       for stereotypes so that Spring can create and auto-register beans."
+    -->
+    <context:component-scan base-package="org.example.componentscan"/>
+
+</beans>

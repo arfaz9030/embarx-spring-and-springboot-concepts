@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML declaration:
+  Declares this file as a standard XML configuration.
+
+  Interview line:
+  "Spring configuration files are standard XML documents."
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+      Bean: specification (CarSpecification)
+
+      This bean represents the dependency that will be injected
+      into Car via constructor autowiring.
+
+      NOTE:
+      - Values are injected using setter injection here
+      - This bean must exist BEFORE Car is created
+
+      Interview line:
+      "For constructor autowiring, Spring first creates
+       the dependency bean and then passes it to the constructor."
+    -->
+    <bean id="specification"
+          class="org.example.autowire.byconstructor.CarSpecification">
+<!--       values are injected using setter injection here-->
+        <property name="make" value="Toyata"/>
+        <property name="model" value="120edconstructor"/>
+    </bean>
+
+    <!--
+      Bean: myCar
+
+      autowire="constructor":
+      - Spring looks at the constructor of Car
+      - Finds a constructor parameter of type CarSpecification
+      - Searches for a bean of that type
+      - Injects it automatically
+
+      IMPORTANT RULE:
+      - Exactly ONE matching bean must exist
+      - Constructor parameter TYPE must match
+
+      Interview line:
+      "Constructor autowiring injects dependencies
+       based on constructor parameter types."
+    -->
+    <bean id="myCar"
+          class="org.example.autowire.byconstructor.Car"
+          autowire="constructor" />
+
+    <!--
+      Bean: busSpeci (BusSpeci)
+
+      This bean acts as a dependency for Bus.
+      It is configured separately and managed by Spring.
+
+      Interview line:
+      "Dependencies are configured as separate beans
+       and injected into dependent classes."
+    -->
+    <bean id="busSpeci"
+          class="org.example.autowire.byconstructor.BusSpeci">
+        <property name="make" value="Toyataconstructor"/>
+    </bean>
+
+    <!--
+      Bean: myBus
+
+      autowire="constructor":
+      - Spring inspects Bus constructors
+      - Finds a constructor expecting BusSpeci
+      - Injects the busSpeci bean automatically
+
+      FAILURE CASES:
+      - No matching bean → BeanCreationException
+      - Multiple matching beans → NoUniqueBeanDefinitionException
+
+      Interview line:
+      "Constructor autowiring fails if Spring cannot
+       uniquely resolve constructor dependencies."
+    -->
+    <bean id="myBus"
+          class="org.example.autowire.byconstructor.Bus"
+          autowire="constructor" />
+
+</beans>

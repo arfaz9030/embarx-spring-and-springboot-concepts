@@ -1,4 +1,4 @@
-package org.example.setter.injection;
+package org.example.autowire.bytype;
 
 /*
  * Car is NOT responsible for creating CarSpecification.
@@ -17,15 +17,9 @@ public class Car {
      * Interview line:
      * "Dependencies are expressed as fields, not created internally."
      */
-    private Specification specification;
-    /*
-     * This setter is MANDATORY for XML property injection.
-     *
-     * XML <property name="specification"/>
-     * → Spring looks for setSpecification(...)
-     */
+    private CarSpecification specification;
 
-    public void setSpecification(Specification specification) {
+    public void setSpecification(CarSpecification specification) {
         this.specification = specification;
     }
 

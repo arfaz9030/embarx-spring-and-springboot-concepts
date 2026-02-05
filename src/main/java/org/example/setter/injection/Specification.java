@@ -1,7 +1,7 @@
 package org.example.setter.injection;
 
 /*
- * Specification is a simple data holder.
+ * CarSpecification is a simple data holder.
  * It does not depend on Spring.
  *
  * Interview line:
@@ -56,7 +56,7 @@ public class Specification {
      */
     @Override
     public String toString() {
-        return "Specification{" +
+        return "CarSpecification{" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 '}';

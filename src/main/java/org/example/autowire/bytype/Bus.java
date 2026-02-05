@@ -1,6 +1,8 @@
-package org.example.autowire.byname;
+package org.example.autowire.bytype;
+
 /*
- * Bus is NOT responsible for creating CarSpecification.
+ * Bus is NOT responsible for creating BusSpeci.
+ *
  * It only declares what it needs.
  *
  * Interview line:
